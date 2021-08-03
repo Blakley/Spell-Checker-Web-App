@@ -5,7 +5,7 @@ Uses a dynamic dictionary of english words pulled
 from [this github page](https://gist.githubusercontent.com/h3xx/1976236/raw/bbabb412261386673eff521dddbe1dc815373b1dwiki-100k.txt) as our source reference. </br>
 After handling punctuations, any incorrect word is highlighted in red as its typed.
 
-## Demo <a href="https://blakley.github.io/"><strong>Try Here</strong></a>
+## Demo
 <p align="">
   <img src="https://media.giphy.com/media/19kZkTOvjWBAFkOiwU/giphy.gif" width=500>
 </p>
