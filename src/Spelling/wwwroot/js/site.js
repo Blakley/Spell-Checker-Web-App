@@ -1,7 +1,12 @@
-﻿// word dictionary
-var word_dictionary = [];
-
-// -----------------------------------------------------------------------------------------------------------------------------
+﻿// load dictionary
+let path = "https://gist.githubusercontent.com/h3xx/1976236/raw/bbabb412261386673eff521dddbe1dc815373b1d/wiki-100k.txt";
+let dictionary = [];
+$.get(path, function(data, status) {
+    dictionary = data.split("\n");
+    dictionary = dictionary.filter(function (item) {
+        return item.indexOf("#") !== 0;
+    });
+});
 
 /* check button clicked - check words against dictionary words */
 document.getElementById('input-form').onsubmit = function() { 
@@ -41,3 +46,4 @@ document.getElementById('input-form').onsubmit = function() {
 
     return false;
 };
+
