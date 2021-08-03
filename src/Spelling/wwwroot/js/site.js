@@ -8,24 +8,20 @@ $.get(path, function(data, status) {
     });    
 });
 
-let punctuations = [".", "?", "!", ",", ":", "'"];
+let punctuations = [".", "?", "!", ",", ":", ";", "'"];
 
 // check if input words are in our dictionary
 $("#editor").on("keyup", function(e) {
-    // Space key pressed
-    if (e.keyCode == 32) {
+    if (e.keyCode == 32) { // Space key pressed
         var newHTML = "";
-        
-        // Loop through words
         let temp = "";
+
         $(this).text().replace(/[\s]+/g, " ").trim().split(" ").forEach(function(word) {
-            
             // check if there's an ending punctuation
             temp = word;
-            if (punctuations.includes(temp.charAt(temp.length-1))) {
+            if (punctuations.includes(temp.charAt(temp.length-1)))
                 temp = temp.slice(0, -1); 
-            }
-            
+           
             // check if the word is in the dictionary, change color if it isn't.
             if (dictionary.indexOf(temp.trim().toLowerCase()) > -1)
                 newHTML += "<span class='normal'>" + word + "&nbsp;</span>";
@@ -46,3 +42,13 @@ $("#editor").on("keyup", function(e) {
         this.focus();
     }
 });
+
+// handle pasted text
+$("#editor").bind("paste", function(e) {
+    // only execute if editor is empty
+    let span = document.querySelector('span');
+    let editor = document.getElementById("editor");
+    if (editor.contains(span) == false) {
+        alert("Press the space key after your text is pasted");
+    }
+} );

@@ -2,8 +2,9 @@
 
 ASP.NET Core : Spell Checker Web App
 
-## Demo
+## Demo <a href="https://blakley.github.io/"><strong>Try Here</strong></a>
 <p align="">
+  <img src="https://media.giphy.com/media/19kZkTOvjWBAFkOiwU/giphy.gif" width=500>
 </p>
 
 ## Dependencies
