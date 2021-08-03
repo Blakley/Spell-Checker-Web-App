@@ -2,48 +2,47 @@
 let path = "https://gist.githubusercontent.com/h3xx/1976236/raw/bbabb412261386673eff521dddbe1dc815373b1d/wiki-100k.txt";
 let dictionary = [];
 $.get(path, function(data, status) {
-    dictionary = data.split("\n");
+    dictionary = data.split("\n").map(v => v.toLowerCase());
     dictionary = dictionary.filter(function (item) {
         return item.indexOf("#") !== 0;
-    });
+    });    
 });
 
-/* check button clicked - check words against dictionary words */
-document.getElementById('input-form').onsubmit = function() { 
-    var current_input = document.getElementById("input-text-form").value;
-    var input_words = current_input.split(' ');
+let punctuations = [".", "?", "!", ",", ":", "'"];
 
-    // compare input words to dictionary words
-    for (let i = 0; i < input_words.length; i++) {
-        // skip spaces
-        if (!/\S/.test(input_words[i])) {
-            continue;
-        }
+// check if input words are in our dictionary
+$("#editor").on("keyup", function(e) {
+    // Space key pressed
+    if (e.keyCode == 32) {
+        var newHTML = "";
         
-        // check for a word with a period at the
-        var last_character = input_words[i].slice(-1); 
-        if (last_character == '.' && last_character == ',') {
-            let new_word = input_words[i].slice(0, -1) 
-            if (word_dictionary.includes(new_word.toLowerCase())) {
-                console.log("word found: " + input_words[i].toLowerCase());
-            } 
-            else {
-                document.getElementById("output-text-form").value += input_words[i].toLowerCase() + '\n'
-                
-                console.log("word not include: " + input_words[i].toLowerCase());
+        // Loop through words
+        let temp = "";
+        $(this).text().replace(/[\s]+/g, " ").trim().split(" ").forEach(function(word) {
+            
+            // check if there's an ending punctuation
+            temp = word;
+            if (punctuations.includes(temp.charAt(temp.length-1))) {
+                temp = temp.slice(0, -1); 
             }
-        }
-        else   // check for normal word
-        {
-            if (word_dictionary.includes(input_words[i].toLowerCase()) && last_character != '.') {
-                console.log("word found: " + input_words[i].toLowerCase());
-            } 
-            else {
-                console.log("word not include: " + input_words[i].toLowerCase());
-            }
-        }
+            
+            // check if the word is in the dictionary, change color if it isn't.
+            if (dictionary.indexOf(temp.trim().toLowerCase()) > -1)
+                newHTML += "<span class='normal'>" + word + "&nbsp;</span>";
+            else
+                newHTML += "<span class='incorrect'>" + word + "&nbsp;</span>";
+        });
+        
+        $(this).html(newHTML);
+
+        // Set cursor postion to end of text
+        var child = $(this).children();
+        var range = document.createRange();
+        var sel = window.getSelection();
+        range.setStart(child[child.length - 1], 1);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        this.focus();
     }
-
-    return false;
-};
-
+});

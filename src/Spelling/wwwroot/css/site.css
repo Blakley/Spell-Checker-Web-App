@@ -64,15 +64,10 @@ body {
 /* 
 -------------------------------------------------- */
 .bd {
-    transform: translate(3%, 25%);
-}
-
-.plug {
-  transform: translate(0%, 15%);
+    transform: translate(3%, 10%);
 }
 
 .title-header {
-    /* bottom: 10px; */
     text-align: center;
 }
 
@@ -81,40 +76,32 @@ body {
   font-family: 'Comfortaa', cursive;
 }
 
-#input-text-form {
-  font-size: 20px;
-  border-radius: 10px;
-  border: 4px solid rgba(238, 238, 238, 0.623);
-  filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.4));
-  transform: translate(0%, 25%);
-  resize: none;
-}
-
-#input-text-form:focus {
-  outline-width: 0;
-}
-
-#check-button {
-  font-size: 15px;
-  transform: translate(0%, 30%);
-  color: white;
-  background-color: #5d615f; 
-  border: none;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 6px;
-}
-
-#check-button:hover {
-  background-color: #7b807d; 
-}
-
-#check-button:active {
-  background-color: #4b4e4d; 
-}
-
 #spell-info {
   font-size: 20px;
+}
+
+#editor {
+  width: 1000px;
+  height: 550px;
+
+  padding: 10px;
+  background-color: white;
+  color: black;
+  
+  font-size: 20px;
+  border-radius: 10px;
+  border: 2px solid rgba(238, 238, 238, 0.623);
+  filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.4));
+
+  transform: translate(3%, 15%);
+}
+
+#editor:focus {
+   outline-width: 0;
+}
+
+.incorrect {
+  background-color: rgba(255, 0, 0, 0.178);
 }
 
 .github {
