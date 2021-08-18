@@ -1,7 +1,7 @@
 # Spell-Checker-Web-App
 
 ASP.NET Core : Spell Checker Web App </br>
-Uses a dictionary of english words pulled as our source reference. </br>
+Uses a dictionary of english words as our source reference. </br>
 After handling punctuations, any incorrect word is highlighted in red as its typed.
 
 ## Demo
